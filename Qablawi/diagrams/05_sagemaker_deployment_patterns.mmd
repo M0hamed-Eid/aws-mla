@@ -1,0 +1,13 @@
+flowchart TB
+    A[Approved Model Package] --> B{Inference Requirement}
+    B -->|Large offline dataset| C[Batch Transform]
+    B -->|Predictable low latency| D[Real-time Endpoint]
+    B -->|Intermittent traffic| E[Serverless Inference]
+    B -->|Large payload or long processing| F[Asynchronous Inference]
+    B -->|Many models share infrastructure| G[Multi-model Endpoint]
+    B -->|Sequential preprocessing and prediction| H[Inference Pipeline]
+    D --> I[Auto Scaling and CloudWatch]
+    E --> I
+    F --> I
+    G --> I
+    H --> I

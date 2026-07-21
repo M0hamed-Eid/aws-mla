@@ -1,0 +1,17 @@
+flowchart TB
+    A[Prepared Training Data] --> B{Starting Point}
+    B --> C[SageMaker Built-in Algorithm]
+    B --> D[Script Mode with TensorFlow or PyTorch]
+    B --> E[JumpStart Model or Foundation Model]
+    C --> F[SageMaker Training Job]
+    D --> F
+    E --> F
+    F --> G[Automatic Model Tuning]
+    G --> H[Evaluate Metrics]
+    H --> I[SageMaker Clarify]
+    H --> J[SageMaker Debugger]
+    I --> K{Meets Quality and Governance Gates?}
+    J --> K
+    K -- No --> F
+    K -- Yes --> L[SageMaker Model Registry]
+    L --> M[Version, Approve, and Deploy]

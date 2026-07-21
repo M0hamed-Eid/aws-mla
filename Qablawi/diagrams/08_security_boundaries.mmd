@@ -1,0 +1,21 @@
+flowchart TB
+    A[Users, Applications, and CI/CD] --> B[IAM Roles and Least-Privilege Policies]
+    B --> C[Amazon VPC]
+    subgraph VPC[Private ML Network Boundary]
+        D[SageMaker Training and Endpoints]
+        E[VPC Endpoints]
+        F[Security Groups and Private Subnets]
+    end
+    C --> D
+    C --> E
+    C --> F
+    D --> G[Amazon S3 Artifacts and Data]
+    D --> H[Amazon ECR Images]
+    D --> I[SageMaker Feature Store]
+    J[AWS KMS] -. encryption keys .-> D
+    J -. encryption keys .-> G
+    J -. encryption keys .-> H
+    K[AWS Secrets Manager] -. credentials .-> D
+    L[Amazon Macie] -. sensitive-data discovery .-> G
+    M[AWS CloudTrail and CloudWatch] -. audit and monitoring .-> B
+    M -. audit and monitoring .-> D

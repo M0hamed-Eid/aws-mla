@@ -1,0 +1,20 @@
+flowchart LR
+    A[Data Sources] --> B[Ingest and Store]
+    B --> C[Validate and Transform]
+    C --> D[Feature Engineering]
+    D --> E[Train and Tune]
+    E --> F[Evaluate and Register]
+    F --> G[Deploy]
+    G --> H[Monitor Data, Model, and Infrastructure]
+    H --> I{Drift, Bias, or Performance Issue?}
+    I -- No --> H
+    I -- Yes --> J[Trigger Retraining Workflow]
+    J --> C
+
+    B -. S3, Kinesis, DataSync .-> B
+    C -. Glue, EMR, Data Wrangler .-> C
+    D -. Feature Store .-> D
+    E -. SageMaker Training and AMT .-> E
+    F -. Clarify and Model Registry .-> F
+    G -. Endpoints or Batch Transform .-> G
+    H -. Model Monitor, CloudWatch, CloudTrail .-> H

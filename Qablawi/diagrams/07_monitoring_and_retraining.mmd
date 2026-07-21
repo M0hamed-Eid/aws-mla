@@ -1,0 +1,15 @@
+flowchart LR
+    A[Production Endpoint] --> B[Predictions, Inputs, and Metrics]
+    B --> C[SageMaker Model Monitor]
+    B --> D[Amazon CloudWatch and Logs]
+    B --> E[SageMaker Clarify]
+    F[AWS CloudTrail] --> G[Audit Trail]
+    C --> H{Threshold Breached?}
+    D --> H
+    E --> H
+    H -- No --> B
+    H -- Yes --> I[EventBridge Rule or CloudWatch Alarm]
+    I --> J[Step Functions or SageMaker Pipeline]
+    J --> K[Validate Data and Retrain]
+    K --> L[Register and Approve New Version]
+    L --> A

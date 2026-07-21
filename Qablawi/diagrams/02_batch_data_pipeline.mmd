@@ -1,0 +1,14 @@
+flowchart LR
+    A[Enterprise and File Data] --> B[Amazon S3 Data Lake]
+    B --> C[AWS Glue Data Catalog]
+    C --> D{Transformation Choice}
+    D --> E[AWS Glue or DataBrew]
+    D --> F[Amazon EMR with Spark]
+    D --> G[SageMaker Data Wrangler]
+    E --> H[Curated Data in S3]
+    F --> H
+    G --> H
+    H --> I[SageMaker Feature Store]
+    H --> J[SageMaker Training]
+    I --> J
+    J --> K[Model Registry]

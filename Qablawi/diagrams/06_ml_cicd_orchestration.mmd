@@ -1,0 +1,15 @@
+flowchart LR
+    A[Git Repository or Model Change] --> B[AWS CodePipeline]
+    B --> C[AWS CodeBuild Tests and Packages]
+    C --> D[SageMaker Pipelines]
+    D --> E[Data Processing]
+    E --> F[Training and Evaluation]
+    F --> G[SageMaker Model Registry]
+    G --> H{Approval Gate}
+    H -- Reject --> D
+    H -- Approve --> I[Deploy Endpoint or Batch Workflow]
+    I --> J[CloudWatch and Model Monitor]
+    J --> K[Amazon EventBridge]
+    K --> D
+    L[CloudFormation or AWS CDK] -. provisions .-> B
+    L -. provisions .-> I

@@ -1,0 +1,12 @@
+flowchart LR
+    A[Applications, Devices, Logs] --> B[Amazon Kinesis Data Streams]
+    B --> C{Process or Deliver}
+    C --> D[Managed Service for Apache Flink]
+    C --> E[AWS Lambda]
+    C --> F[Amazon Data Firehose]
+    D --> G[Real-time Features or Aggregates]
+    E --> G
+    F --> H[Amazon S3 or OpenSearch]
+    G --> I[SageMaker Feature Store Online Store]
+    I --> J[Real-time SageMaker Endpoint]
+    H --> K[Offline Training and Analytics]
